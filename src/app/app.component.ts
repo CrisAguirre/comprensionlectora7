@@ -7,7 +7,7 @@ import { ThemeService } from './services/theme.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Comprensión Lectora 7';
+  title = 'Comprensión Lectora 5to';
 
   constructor(private themeService: ThemeService) {
     this.themeService.setTheme(this.themeService.current);

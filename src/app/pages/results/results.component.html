@@ -1,7 +1,8 @@
 <div class="results-container animate-fade-in">
   <div class="page-header">
     <h2>{{ isAdmin ? 'Resultados de Evaluaciones' : 'Mis Resultados' }}</h2>
-    <p *ngIf="isAdmin">Monitoriza el progreso y apropiación de los docentes en cada unidad de Comprensión Lectora 7.</p>
+    <p *ngIf="isAdmin">Monitoriza el progreso y apropiación de los docentes en cada unidad de Comprensión Lectora 5to.
+    </p>
     <p *ngIf="!isAdmin">Aquí puedes ver el historial de tus evaluaciones realizadas en la plataforma.</p>
   </div>
 
@@ -51,7 +52,7 @@
           <h3>Registro Detallado</h3>
           <button class="glass-button small-btn" (click)="loadData()">Actualizar</button>
         </div>
-        
+
         <div class="table-responsive">
           <table class="results-table">
             <thead>
@@ -77,14 +78,14 @@
                 <td class="text-center"><strong>{{ result.score }}/{{ result.totalQuestions }}</strong></td>
                 <td class="text-center">
                   <div class="percentage-bar-wrapper">
-                    <div class="percentage-fill" [style.width.%]="result.percentage" 
-                         [class.good]="result.percentage >= 70" 
-                         [class.bad]="result.percentage < 70"></div>
+                    <div class="percentage-fill" [style.width.%]="result.percentage"
+                      [class.good]="result.percentage >= 70" [class.bad]="result.percentage < 70"></div>
                     <span class="percentage-text">{{ result.percentage }}%</span>
                   </div>
                 </td>
                 <td>
-                  <span class="status-badge" [class.success]="result.percentage >= 70" [class.danger]="result.percentage < 70">
+                  <span class="status-badge" [class.success]="result.percentage >= 70"
+                    [class.danger]="result.percentage < 70">
                     {{ result.percentage >= 70 ? 'Aprobado' : 'Requiere Repaso' }}
                   </span>
                 </td>
@@ -116,7 +117,7 @@
           <div *ngIf="textContributions.length === 0" class="empty-state">
             No hay aportes en texto registrados todavía.
           </div>
-          
+
           <div *ngFor="let contrib of textContributions" class="contribution-card">
             <div class="contrib-header">
               <div class="contrib-meta">

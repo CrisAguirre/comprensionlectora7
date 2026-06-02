@@ -12,9 +12,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Comprensión Lectora 7'`, () => {
+  it(`should have as title 'Comprensión Lectora 5to'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Comprensión Lectora 7');
+    expect(app.title).toEqual('Comprensión Lectora 5to');
   });
 });
