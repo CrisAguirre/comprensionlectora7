@@ -1,0 +1,87 @@
+<div class="unit-content" *ngIf="activity">
+  <!-- Image Banner -->
+  <div class="hero-banner" *ngIf="heroImage && !heroImage.startsWith('css:')">
+    <div class="hero-image-wrapper">
+      <img [src]="heroImage" [alt]="'Imagen de desarrollo — ' + activity.title" class="hero-img" />
+      <div class="hero-overlay">
+        <span class="hero-phase-tag">⚙️ Fase Intermedia</span>
+        <h3 class="hero-title">{{ activity.title }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- CSS Animation Banner -->
+  <div class="glass-panel welcome-hero" *ngIf="heroImage && heroImage.startsWith('css:')">
+    <div class="hero-content">
+      <span class="hero-phase-tag">⚙️ Fase Intermedia</span>
+      <h3 class="hero-title">{{ activity.title }}</h3>
+      <p class="section-subtitle" style="margin-top: 15px; color: var(--text-secondary);">Misión Interactiva y Práctica</p>
+    </div>
+    <div class="hero-graphic">
+      
+      <!-- Timeline Clock Animation -->
+      <div class="floating-cube timeline-cube" *ngIf="heroImage === 'css:timeline'">
+        <div class="cube-face front">1937</div>
+        <div class="cube-face back">1981</div>
+        <div class="cube-face right">2026</div>
+        <div class="cube-face left">Hoy</div>
+        <div class="cube-face top"></div>
+        <div class="cube-face bottom"></div>
+      </div>
+
+      <!-- Game Dice Animation -->
+      <div class="floating-cube game-dice" *ngIf="heroImage === 'css:game'">
+        <div class="cube-face front"><span class="dot"></span></div>
+        <div class="cube-face back"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="cube-face right"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="cube-face left"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="cube-face top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="cube-face bottom"><span class="dot"></span><span class="dot"></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Decorative Banner Fallback (if null) -->
+  <div class="decorative-banner" *ngIf="!heroImage" [attr.data-unit]="unitId">
+
+    <div class="deco-particles">
+      <span class="deco-p" *ngFor="let p of bannerParticles">{{ p }}</span>
+    </div>
+    <div class="deco-content">
+      <span class="deco-icon">{{ unitIcon }}</span>
+      <span class="deco-phase-tag">⚙️ Fase Intermedia</span>
+      <h3 class="deco-title">{{ activity.title }}</h3>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h3>Desarrollo — {{ activity.title }}</h3>
+    <p class="section-subtitle">Fase intermedia (según guía del curso)</p>
+  </div>
+
+  <div class="glass-panel instruction-block">
+    <h4>Fase intermedia</h4>
+    <p class="phase-text">{{ activity.developmentInstructions }}</p>
+  </div>
+
+  <div class="glass-panel instruction-block" *ngIf="developmentResources.length">
+    <h4>Recursos — fase intermedia</h4>
+    <div class="resource-list">
+      <a *ngFor="let r of developmentResources" class="resource-link" [href]="r.url" target="_blank" rel="noopener">
+        <span class="resource-type">{{ r.type }}</span>
+        <span>{{ r.title }} ↗</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="glass-panel instruction-block">
+    <p>Al terminar, pasa a la pestaña <strong>Cierre</strong> para registrar tu reflexión y luego a <strong>Evaluación</strong>.</p>
+  </div>
+</div>
+
+<div class="unit-content" *ngIf="!activity">
+  <div class="glass-panel loading-unit">
+    <p>No se encontró el contenido de desarrollo para esta unidad.</p>
+  </div>
+</div>

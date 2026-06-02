@@ -1,0 +1,46 @@
+<div class="unit-content" *ngIf="activity">
+  <div *ngIf="showRequiredBanner" class="reflection-banner glass-panel">
+    Debes <strong>guardar tu reflexión</strong> en esta fase para desbloquear la pestaña de Evaluación.
+  </div>
+
+  <div class="section-title">
+    <h3>Cierre — {{ activity.title }}</h3>
+    <p class="section-subtitle">Reflexión y cierre de la unidad</p>
+  </div>
+
+  <div class="glass-panel instruction-block">
+    <h4>Fase final</h4>
+    <p class="phase-text">{{ activity.closureInstructions }}</p>
+  </div>
+
+  <div class="glass-panel instruction-block" *ngIf="closureResources.length">
+    <h4>Recursos — fase final y evaluación</h4>
+    <div class="resource-list">
+      <a *ngFor="let r of closureResources" class="resource-link" [href]="r.url" target="_blank" rel="noopener">
+        <span class="resource-type">{{ r.type }}</span>
+        <span>{{ r.title }} ↗</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="glass-panel instruction-block">
+    <h4>Tu reflexión (obligatoria)</h4>
+    <p class="section-subtitle">Resume qué aprendiste en esta unidad. Es requisito para acceder a la evaluación.</p>
+    <textarea class="reflection-area" [(ngModel)]="reflectionText" [disabled]="saved"
+      placeholder="Escribe tu reflexión aquí (mínimo un párrafo)..."></textarea>
+    <p *ngIf="error" class="msg-error">{{ error }}</p>
+    <div style="margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap;">
+      <button class="glass-button" *ngIf="!saved" [disabled]="saving || !reflectionText.trim()" (click)="saveReflection()">
+        {{ saving ? 'Guardando...' : 'Guardar reflexión y desbloquear evaluación' }}
+      </button>
+      <button class="glass-button" *ngIf="saved" (click)="resetReflection()">Editar reflexión (bloquea evaluación)</button>
+    </div>
+    <p *ngIf="saved" class="msg-success">✅ Reflexión guardada. Ya puedes ir a la pestaña Evaluación.</p>
+  </div>
+</div>
+
+<div class="unit-content" *ngIf="!activity">
+  <div class="glass-panel loading-unit">
+    <p>No se encontró el contenido de cierre para esta unidad.</p>
+  </div>
+</div>

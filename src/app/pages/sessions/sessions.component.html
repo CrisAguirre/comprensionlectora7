@@ -1,0 +1,96 @@
+<div class="missions-root">
+
+  <div class="hero-panel glass-panel">
+    <div class="hero-left">
+      <div class="avatar">{{ getLevelAvatar(level) }}</div>
+      <div class="profile-info">
+        <h2 class="level-name">{{ getLevelName(level) }}</h2>
+        <span class="level-badge">Nivel {{ level }}</span>
+      </div>
+    </div>
+
+    <div class="hero-center">
+      <div class="global-progress-label">
+        <span>Progreso global</span>
+        <strong>{{ completedCount }} / {{ units.length || 8 }} unidades</strong>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" [style.width.%]="globalPercent">
+          <span class="progress-text" *ngIf="globalPercent > 8">{{ globalPercent }}%</span>
+        </div>
+      </div>
+      <div class="checkpoints">
+        <div class="checkpoint"
+             *ngFor="let u of units"
+             [class.done]="u.status === 'completed'"
+             [class.active]="u.status === 'in-progress' || u.status === 'available'"
+             [title]="u.title">
+          {{ u.status === 'completed' ? '✅' : u.status === 'in-progress' ? '⚡' : u.status === 'available' ? '🚀' : '🔒' }}
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="xp-block">
+        <span class="xp-value">{{ totalXP }} XP</span>
+        <span class="xp-label">{{ xpToNextLevel() }} XP para nivel {{ level + 1 }}</span>
+        <div class="xp-bar-track">
+          <div class="xp-bar-fill" [style.width.%]="xpLevelPercent()"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <h3>📚 Ruta de unidades</h3>
+    <p>Completa cada unidad en orden. Cada una aprobada suma <strong>100 XP</strong>.</p>
+  </div>
+
+  <div class="missions-list">
+    <div class="mission-row glass-panel"
+         *ngFor="let u of units; let i = index"
+         [class.status-locked]="u.status === 'locked'"
+         [class.status-available]="u.status === 'available'"
+         [class.status-inprogress]="u.status === 'in-progress'"
+         [class.status-completed]="u.status === 'completed'">
+
+      <div class="mission-step">
+        <div class="step-circle">{{ u.status === 'completed' ? '✅' : u.status === 'locked' ? '🔒' : u.icon }}</div>
+        <div class="step-line" *ngIf="i < units.length - 1"></div>
+      </div>
+
+      <div class="mission-body">
+        <div class="mission-meta">
+          <span class="mission-num">Unidad {{ u.id }}</span>
+          <span class="mission-status-badge status-{{ u.status }}">
+            {{ statusIcon(u.status) }} {{ statusLabel(u.status) }}
+          </span>
+        </div>
+        <h4>{{ u.title }}</h4>
+        <p>{{ u.description }}</p>
+        <div class="mission-footer">
+          <span class="xp-reward">+{{ u.xp }} XP</span>
+          <span class="completed-date" *ngIf="u.completedAt">
+            Completada el {{ u.completedAt | date:'dd/MM/yyyy' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="mission-action">
+        <button class="glass-button action-btn"
+                [disabled]="u.status === 'locked'"
+                [class.btn-completed]="u.status === 'completed'"
+                (click)="goToUnit(u.id)">
+          <span *ngIf="u.status === 'locked'">🔒 Bloqueada</span>
+          <span *ngIf="u.status === 'available'">🚀 Comenzar</span>
+          <span *ngIf="u.status === 'in-progress'">⚡ Continuar</span>
+          <span *ngIf="u.status === 'completed'">🔁 Repetir</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-actions">
+    <button class="glass-button reset-btn" (click)="resetProgress()">↺ Reiniciar progreso</button>
+  </div>
+</div>

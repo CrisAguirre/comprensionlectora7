@@ -1,0 +1,185 @@
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-brand h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--accent-color);
+  text-shadow: 0 0 5px rgba(0, 229, 255, 0.3);
+}
+
+.badge {
+  background: rgba(0, 229, 255, 0.2);
+  border: 1px solid var(--accent-color);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background: var(--nav-hover-bg);
+}
+
+.nav-link.active {
+  color: var(--accent-color);
+  background: var(--nav-active-bg);
+  font-weight: 600;
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.username {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.logout-btn {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  background: rgba(255, 107, 107, 0.1);
+  border-color: rgba(255, 107, 107, 0.5);
+  color: #ff6b6b;
+}
+
+.logout-btn:hover {
+  background: #ff6b6b;
+  color: white;
+  box-shadow: 0 0 10px rgba(255, 107, 107, 0.4);
+}
+
+.content-area {
+  flex: 1;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ===== TABLET ===== */
+@media (max-width: 992px) {
+  .main-nav {
+    padding: 12px 20px;
+  }
+  .nav-links {
+    gap: 8px;
+  }
+  .nav-link {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+  .content-area {
+    padding: 25px 20px;
+  }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .main-nav {
+    padding: 10px 12px;
+    justify-content: center;
+    gap: 6px;
+  }
+  .nav-brand h2 {
+    font-size: 1.15rem;
+  }
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .nav-link {
+    font-size: 0.72rem;
+    padding: 5px 7px;
+  }
+  .nav-user {
+    gap: 8px;
+  }
+  .username {
+    font-size: 0.8rem;
+  }
+  .logout-btn {
+    padding: 5px 10px;
+    font-size: 0.72rem;
+  }
+  .content-area {
+    padding: 15px 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .nav-brand h2 {
+    font-size: 1rem;
+  }
+  .nav-link {
+    font-size: 0.65rem;
+    padding: 4px 5px;
+  }
+  .content-area {
+    padding: 10px 6px;
+  }
+}
+
+.role-badge {
+  font-size: 0.72rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.admin-badge { background: rgba(246,173,85,0.18); color: #f6ad55; }
+.docente-badge { background: rgba(99,179,237,0.18); color: #63b3ed; }

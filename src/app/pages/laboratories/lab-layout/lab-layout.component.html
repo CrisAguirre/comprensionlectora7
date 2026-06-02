@@ -1,0 +1,28 @@
+<div class="lab-container">
+  <div class="lab-header glass-panel">
+    <div class="header-content">
+      <button class="back-btn" routerLink="/laboratories">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Volver a Unidades
+      </button>
+      <h2>Unidad {{ unitId }}: {{ unitTitle }}</h2>
+      <div class="spacer"></div>
+    </div>
+
+    <p *ngIf="showEvalHint" class="eval-hint glass-panel">
+      Completa y guarda tu reflexión en <strong>Cierre</strong> para desbloquear la evaluación.
+    </p>
+
+    <div class="lab-tabs">
+      <a [routerLink]="['/laboratories', unitId, 'inicio']" routerLinkActive="active-tab" class="tab-link">Inicio</a>
+      <a [routerLink]="['/laboratories', unitId, 'desarrollo']" routerLinkActive="active-tab" class="tab-link">Desarrollo</a>
+      <a [routerLink]="['/laboratories', unitId, 'cierre']" routerLinkActive="active-tab" class="tab-link">Cierre</a>
+      <a *ngIf="!evalLocked" [routerLink]="['/laboratories', unitId, 'evaluacion']" routerLinkActive="active-tab" class="tab-link">Evaluación</a>
+      <span *ngIf="evalLocked" class="tab-link-locked" (click)="onEvalLockedClick()" title="Guarda tu reflexión en Cierre">Evaluación 🔒</span>
+    </div>
+  </div>
+
+  <div class="lab-content-area">
+    <router-outlet></router-outlet>
+  </div>
+</div>

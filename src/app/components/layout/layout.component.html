@@ -1,0 +1,38 @@
+<div class="layout-container">
+  <!-- Navigation Header -->
+  <nav class="glass-panel main-nav">
+    <div class="nav-brand">
+      <h2 class="platform-logo" style="margin:0; font-weight: 800; font-size: 1.1rem; line-height: 1.2;"><span
+          class="logo-part-main">Comprensión</span><span class="logo-part-accent"> Lectora </span><span
+          class="logo-part-num">7</span></h2>
+      <span class="badge">Gr. 7</span>
+    </div>
+
+    <div class="nav-links">
+      <a routerLink="/home" routerLinkActive="active" class="nav-link">Inicio</a>
+      <a *ngIf="!isAdmin" routerLink="/sessions" routerLinkActive="active" class="nav-link">Mi Progreso</a>
+      <a routerLink="/laboratories" routerLinkActive="active" class="nav-link">Unidades</a>
+      <a *ngIf="isAdmin" routerLink="/users" routerLinkActive="active" class="nav-link">Usuarios</a>
+      <a routerLink="/results" routerLinkActive="active" class="nav-link">
+        {{ isAdmin ? 'Resultados' : 'Mis Resultados' }}
+      </a>
+    </div>
+
+    <div class="nav-user">
+      <button type="button" class="theme-toggle-btn" (click)="toggleTheme()"
+        [attr.aria-label]="isLight ? 'Modo nocturno' : 'Modo diurno'">
+        {{ isLight ? '🌙' : '☀️' }}
+      </button>
+      <span class="role-badge" [class.admin-badge]="isAdmin" [class.docente-badge]="!isAdmin">
+        {{ isAdmin ? '🛡️ Admin' : '📚 Docente' }}
+      </span>
+      <span class="username">{{ currentUser?.displayName }}</span>
+      <button class="glass-button logout-btn" (click)="logout()">Salir</button>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="content-area">
+    <router-outlet></router-outlet>
+  </main>
+</div>

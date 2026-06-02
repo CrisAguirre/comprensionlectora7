@@ -1,0 +1,85 @@
+<div class="page-header">
+  <h2>Bienvenido a Comprensión Lectora 7</h2>
+  <p>Plataforma para fortalecer comprensión lectora en estudiantes de grado séptimo — 8 unidades en 4 semanas.</p>
+</div>
+
+<div class="glass-panel welcome-hero">
+  <div class="hero-content">
+    <h3>Ruta de aprendizaje</h3>
+    <p>
+      Cada unidad sigue la metodología del curso en línea: <strong>Inicio</strong> (apropiación),
+      <strong>Desarrollo</strong> (actividad con recursos digitales), <strong>Cierre</strong> (reflexión) y
+      <strong>Evaluación</strong> (quiz formativo).
+    </p>
+    <button class="glass-button primary-btn" routerLink="/laboratories">
+      🚀 Ir a las unidades
+    </button>
+  </div>
+  <div class="hero-graphic">
+    <div class="floating-book">
+      <div class="book-face front">CL7</div>
+      <div class="book-face back"></div>
+      <div class="book-face right"></div>
+      <div class="book-face left"></div>
+      <div class="book-face top"></div>
+      <div class="book-face bottom"></div>
+    </div>
+  </div>
+</div>
+
+<div class="section-container">
+  <div class="section-title">
+    <h3>Las 8 unidades del curso</h3>
+    <div class="title-line"></div>
+  </div>
+
+  <div class="labs-summary-grid">
+    <div class="glass-panel lab-summary-card" *ngFor="let u of units">
+      <div class="lab-badge">Unidad {{ u.activityId }}</div>
+      <div class="lab-icon">{{ unitIcon(u.activityId) }}</div>
+      <h4>{{ u.title }}</h4>
+      <p>{{ u.objective }}</p>
+      <span class="unit-level-tag">{{ unitLevel(u.unit) }}</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="section-container">
+  <div class="section-title">
+    <h3>Metodología por unidad</h3>
+    <p class="section-subtitle">Estructura alineada al plan de producción de curso en línea (inicio → desarrollo → cierre → evaluación).</p>
+    <div class="title-line"></div>
+  </div>
+
+  <div class="methodology-timeline">
+    <div class="timeline-step">
+      <div class="step-marker"><span class="marker-icon">📖</span></div>
+      <div class="glass-panel step-content">
+        <h4>1. Inicio</h4>
+        <p>Objetivo de la unidad, lectura inicial y recursos de apoyo (Genially, Canva, Calameo, etc.).</p>
+      </div>
+    </div>
+    <div class="timeline-step">
+      <div class="step-marker"><span class="marker-icon">⚙️</span></div>
+      <div class="glass-panel step-content">
+        <h4>2. Desarrollo</h4>
+        <p>Actividad principal: nube de palabras, prompts, fichas Liveworksheets, Pixton, línea de tiempo, Scratch o storytelling.</p>
+      </div>
+    </div>
+    <div class="timeline-step">
+      <div class="step-marker"><span class="marker-icon">💡</span></div>
+      <div class="glass-panel step-content">
+        <h4>3. Cierre</h4>
+        <p>Reflexión del equipo y producto entregable según la guía de cada unidad.</p>
+      </div>
+    </div>
+    <div class="timeline-step">
+      <div class="step-marker"><span class="marker-icon">📝</span></div>
+      <div class="glass-panel step-content">
+        <h4>4. Evaluación</h4>
+        <p>Quiz de comprensión lectora. Aprueba con 70% o más para desbloquear la siguiente unidad.</p>
+      </div>
+    </div>
+  </div>
+</div>

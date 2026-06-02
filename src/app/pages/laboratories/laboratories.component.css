@@ -1,0 +1,239 @@
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+  animation: fadeInDown 0.6s ease-out;
+}
+
+.page-header h2 {
+  font-size: 2.2rem;
+  color: var(--text-primary);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.page-header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.labs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  padding: 20px 0;
+}
+
+.lab-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: fadeInUp 0.8s ease-out backwards;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.lab-card:nth-child(1) { animation-delay: 0.1s; }
+.lab-card:nth-child(2) { animation-delay: 0.2s; }
+.lab-card:nth-child(3) { animation-delay: 0.3s; }
+.lab-card:nth-child(4) { animation-delay: 0.4s; }
+.lab-card:nth-child(5) { animation-delay: 0.5s; }
+
+.lab-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: all 0.6s ease;
+}
+
+.lab-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 229, 255, 0.3);
+  border-color: var(--accent-color);
+}
+
+.lab-card:hover::before {
+  left: 200%;
+}
+
+/* Colores personalizados (Efecto Aero Neon) */
+.labs-grid .lab-card:nth-child(1) { background: linear-gradient(135deg, rgba(0, 229, 255, 0.5), rgba(255, 255, 255, 0.15)); }
+.labs-grid .lab-card:nth-child(2) { background: linear-gradient(135deg, rgba(217, 70, 239, 0.5), rgba(255, 255, 255, 0.15)); }
+.labs-grid .lab-card:nth-child(3) { background: linear-gradient(135deg, rgba(250, 140, 22, 0.5), rgba(255, 255, 255, 0.15)); }
+.labs-grid .lab-card:nth-child(4) { background: linear-gradient(135deg, rgba(16, 185, 129, 0.5), rgba(255, 255, 255, 0.15)); }
+.labs-grid .lab-card:nth-child(5) { background: linear-gradient(135deg, rgba(239, 68, 68, 0.5), rgba(255, 255, 255, 0.15)); }
+.labs-grid .lab-card:nth-child(6) { background: linear-gradient(135deg, rgba(234, 179, 8, 0.5), rgba(255, 255, 255, 0.15)); }
+.labs-grid .lab-card:nth-child(7) { background: linear-gradient(135deg, rgba(139, 92, 246, 0.5), rgba(255, 255, 255, 0.15)); }
+
+.labs-grid .lab-card:nth-child(1):hover { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.5); border-color: rgba(0, 229, 255, 0.8); }
+.labs-grid .lab-card:nth-child(2):hover { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(217, 70, 239, 0.5); border-color: rgba(217, 70, 239, 0.8); }
+.labs-grid .lab-card:nth-child(3):hover { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(250, 140, 22, 0.5); border-color: rgba(250, 140, 22, 0.8); }
+.labs-grid .lab-card:nth-child(4):hover { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(16, 185, 129, 0.5); border-color: rgba(16, 185, 129, 0.8); }
+.labs-grid .lab-card:nth-child(5):hover { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(239, 68, 68, 0.5); border-color: rgba(239, 68, 68, 0.8); }
+.labs-grid .lab-card:nth-child(6):hover { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(234, 179, 8, 0.5); border-color: rgba(234, 179, 8, 0.8); }
+.labs-grid .lab-card:nth-child(7):hover { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.5); border-color: rgba(139, 92, 246, 0.8); }
+
+.card-content {
+  padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.lab-number {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(0, 229, 255, 0.2);
+  border: 2px solid var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+}
+
+.card-content h3 {
+  font-size: 1.4rem;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.card-content p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+  flex: 1;
+}
+
+.start-btn {
+  width: 100%;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .page-header h2 {
+    font-size: 1.5rem;
+  }
+  .page-header p {
+    font-size: 0.9rem;
+  }
+  .page-header {
+    margin-bottom: 20px;
+  }
+  .labs-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 10px 0;
+  }
+  .card-content {
+    padding: 20px 15px;
+  }
+  .lab-number {
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+  .card-content h3 {
+    font-size: 1.15rem;
+  }
+  .card-content p {
+    font-size: 0.85rem;
+    margin-bottom: 18px;
+  }
+  .lab-card:hover {
+    transform: translateY(-5px) scale(1.01);
+  }
+}
+
+/* ── Gamificación: estados de las misiones ─────────────── */
+.lab-card.locked { opacity: 0.55; pointer-events: auto; }
+.lab-card.locked:hover { transform: none; box-shadow: none; border-color: inherit; }
+
+.lab-card.completed { border-color: #5cb85c !important; }
+.lab-card.available { border-color: var(--accent-color) !important; }
+.lab-card.inprogress { border-color: #f7c948 !important; }
+
+/* Ribbon */
+.ribbon {
+  position: absolute;
+  top: 14px; right: -28px;
+  background: #5cb85c;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 36px;
+  transform: rotate(35deg);
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+.ribbon-progress { background: #f7a500; right: -32px; }
+
+/* Lock overlay */
+.lock-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(0,0,0,0.25);
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.lock-icon  { font-size: 2rem; }
+.lock-text  { font-size: 0.78rem; color: var(--text-secondary); text-align: center; padding: 0 20px; }
+
+/* Mission label */
+.mission-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 0px;
+}
+
+/* XP tag */
+.xp-tag {
+  display: inline-block;
+  background: rgba(247,201,72,0.12);
+  border: 1px solid rgba(247,201,72,0.3);
+  color: #f7c948;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 2px 12px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+
+.btn-locked { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+.btn-done   { border-color: #5cb85c; color: #5cb85c; }

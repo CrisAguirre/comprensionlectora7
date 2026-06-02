@@ -1,0 +1,94 @@
+<div class="unit-content" *ngIf="activity && questions.length">
+  <div class="section-title" *ngIf="!submitted">
+    <h3>Evaluación — {{ activity.title }}</h3>
+    <p class="section-subtitle">
+      Completa la evaluación del PDF (enlaces en Cierre si aplica) y responde el quiz de la plataforma ({{ questions.length }} preguntas, mínimo {{ passPercentage }}% para avanzar).
+    </p>
+  </div>
+
+  <div class="glass-panel instruction-block" *ngIf="externalEvaluations.length && !submitted">
+    <h4>Evaluación según guía del curso (PDF)</h4>
+    <div class="resource-list">
+      <a *ngFor="let r of externalEvaluations" class="resource-link" [href]="r.url" target="_blank" rel="noopener">
+        <span class="resource-type">{{ r.type }}</span>
+        <span>{{ r.title }} ↗</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="glass-panel progress-bar-container" *ngIf="!submitted">
+    <div class="progress-info">
+      <span>Progreso</span>
+      <span class="progress-count">{{ (answers | keyvalue).length }} / {{ questions.length }}</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" [style.width.%]="((answers | keyvalue).length / questions.length) * 100"></div>
+    </div>
+  </div>
+
+  <div *ngIf="!submitted" class="questions-container">
+    <div *ngFor="let question of questions" class="glass-panel question-card">
+      <div class="question-header">
+        <span class="question-number">{{ question.id }}</span>
+        <p class="question-text">{{ question.text }}</p>
+      </div>
+      <div class="options-list">
+        <div *ngFor="let option of question.options; let j = index" class="option-item"
+          [class.selected]="answers[question.id] === j" (click)="selectAnswer(question.id, j)">
+          <div class="option-radio">
+            <div class="radio-inner" *ngIf="answers[question.id] === j"></div>
+          </div>
+          <span>{{ option }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="submit-section" *ngIf="!submitted">
+    <button class="glass-button submit-btn" [disabled]="!canSubmit()" (click)="submitEvaluation()">
+      Enviar evaluación
+    </button>
+    <p *ngIf="!canSubmit()" class="submit-hint">Responde todas las preguntas antes de enviar.</p>
+  </div>
+
+  <div *ngIf="submitted" class="results-container">
+    <div class="section-title">
+      <h3>Resultados</h3>
+    </div>
+    <div class="glass-panel results-card">
+      <div class="score-circle" [class.score-high]="getPercentage() >= passPercentage"
+        [class.score-low]="getPercentage() < passPercentage">
+        <div class="score-value">{{ getPercentage() }}%</div>
+        <div class="score-label">Puntaje</div>
+      </div>
+      <div class="results-detail">
+        <h4>{{ score }} de {{ questions.length }} respuestas correctas</h4>
+        <p *ngIf="getPercentage() >= passPercentage">¡Aprobaste! Puedes continuar con la siguiente unidad.</p>
+        <p *ngIf="getPercentage() < passPercentage">Repasa Inicio, Desarrollo y Cierre, luego reintenta la evaluación.</p>
+      </div>
+    </div>
+
+    <div class="review-section">
+      <h4 class="review-title">Revisión</h4>
+      <div *ngFor="let question of questions" class="glass-panel review-card"
+        [class.correct]="answers[question.id] === question.correct"
+        [class.incorrect]="answers[question.id] !== question.correct">
+        <p>{{ question.text }}</p>
+        <div class="review-answer" *ngIf="answers[question.id] !== question.correct">
+          <span>Tu respuesta: {{ question.options[answers[question.id]] }}</span>
+        </div>
+        <div class="review-answer">
+          <span class="correct-answer">Correcta: {{ question.options[question.correct] }}</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="glass-button retry-btn" (click)="retryEvaluation()">Reintentar evaluación</button>
+  </div>
+</div>
+
+<div class="unit-content" *ngIf="!activity || !questions.length">
+  <div class="glass-panel loading-unit">
+    <p>No hay evaluación configurada para esta unidad.</p>
+  </div>
+</div>

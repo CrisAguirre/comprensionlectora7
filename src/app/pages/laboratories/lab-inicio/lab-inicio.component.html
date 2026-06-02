@@ -1,0 +1,79 @@
+<div class="unit-content" *ngIf="activity">
+  <!-- Image Banner -->
+  <div class="hero-banner" *ngIf="heroImage && !heroImage.startsWith('css:')">
+    <div class="hero-image-wrapper">
+      <img [src]="heroImage" [alt]="'Imagen de inicio — ' + activity.title" class="hero-img" />
+      <div class="hero-overlay">
+        <span class="hero-phase-tag">🚀 Fase Inicial</span>
+        <h3 class="hero-title">{{ activity.title }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- CSS Animation Banner -->
+  <div class="glass-panel welcome-hero" *ngIf="heroImage && heroImage.startsWith('css:')">
+    <div class="hero-content">
+      <span class="hero-phase-tag">🚀 Fase Inicial</span>
+      <h3 class="hero-title">{{ activity.title }}</h3>
+      <p class="section-subtitle" style="margin-top: 15px; color: var(--text-secondary);">Misión Interactiva y Práctica</p>
+    </div>
+    <div class="hero-graphic">
+      
+      <!-- Scratch Block Animation -->
+      <div class="floating-cube scratch-cube" *ngIf="heroImage === 'css:scratch'">
+        <div class="cube-face front"></div>
+        <div class="cube-face back"></div>
+        <div class="cube-face right"></div>
+        <div class="cube-face left"></div>
+        <div class="cube-face top"></div>
+        <div class="cube-face bottom"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Decorative Banner Fallback (if null) -->
+  <div class="decorative-banner" *ngIf="!heroImage" [attr.data-unit]="unitId">
+
+    <div class="deco-particles">
+      <span class="deco-p" *ngFor="let p of bannerParticles">{{ p }}</span>
+    </div>
+    <div class="deco-content">
+      <span class="deco-icon">{{ unitIcon }}</span>
+      <span class="deco-phase-tag">🚀 Fase Inicial</span>
+      <h3 class="deco-title">{{ activity.title }}</h3>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <span class="unit-level-badge">{{ unitLevelLabel() }}</span>
+    <h3>Inicio — {{ activity.title }}</h3>
+    <p class="section-subtitle">{{ activity.objective }}</p>
+    <p class="section-subtitle" *ngIf="activity.weakness"><strong>Debilidad a fortalecer:</strong> {{ activity.weakness }}</p>
+    <p class="section-subtitle" *ngIf="activity.durationMinutes">Duración estimada: {{ activity.durationMinutes }} minutos (fases inicial, intermedia y final).</p>
+  </div>
+
+  <div class="glass-panel instruction-block">
+    <h4>Fase inicial</h4>
+    <p class="phase-text">{{ activity.startInstructions }}</p>
+  </div>
+
+  <div class="glass-panel instruction-block" *ngIf="startResources.length">
+    <h4>Recursos — fase inicial</h4>
+    <div class="resource-list">
+      <a *ngFor="let r of startResources" class="resource-link" [href]="r.url" target="_blank" rel="noopener">
+        <span class="resource-type">{{ r.type }}</span>
+        <span>{{ r.title }}</span>
+      </a>
+    </div>
+    <p class="section-subtitle" style="margin-top: 16px;">
+      Continúa en la pestaña <strong>Desarrollo</strong> para la actividad principal y en <strong>Cierre</strong> para la reflexión.
+    </p>
+  </div>
+</div>
+
+<div class="unit-content" *ngIf="!activity">
+  <div class="glass-panel loading-unit">
+    <p>Unidad no encontrada.</p>
+  </div>
+</div>

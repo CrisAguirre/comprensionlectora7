@@ -1,0 +1,37 @@
+<div class="page-header">
+  <h2>📚 Unidades del curso</h2>
+  <p>8 unidades de comprensión lectora (semántico, sintáctico y pragmático). Completa cada una en orden para desbloquear la siguiente.</p>
+</div>
+
+<div class="labs-grid">
+  <div class="glass-panel lab-card"
+       *ngFor="let unit of units"
+       [class.locked]="isLocked(unit)"
+       [class.completed]="unit.status === 'completed'"
+       [class.available]="unit.status === 'available'"
+       [class.inprogress]="unit.status === 'in-progress'">
+
+    <div class="ribbon" *ngIf="unit.status === 'completed'">✅ Completada</div>
+    <div class="ribbon ribbon-progress" *ngIf="unit.status === 'in-progress'">⚡ En progreso</div>
+
+    <div class="lock-overlay" *ngIf="isLocked(unit)">
+      <span class="lock-icon">🔒</span>
+      <span class="lock-text">Completa la unidad anterior</span>
+    </div>
+
+    <div class="card-content">
+      <div class="lab-number">{{ isLocked(unit) ? '🔒' : unit.icon }}</div>
+      <div class="mission-label">Unidad {{ unit.id }} · {{ unit.unitLevel }}</div>
+      <h3>{{ unit.title }}</h3>
+      <p>{{ unit.description }}</p>
+      <div class="xp-tag">+100 XP</div>
+      <button class="glass-button start-btn"
+              [disabled]="isLocked(unit)"
+              [class.btn-locked]="isLocked(unit)"
+              [class.btn-done]="unit.status === 'completed'"
+              (click)="enter(unit)">
+        {{ btnLabel(unit.status) }}
+      </button>
+    </div>
+  </div>
+</div>
