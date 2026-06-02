@@ -18,49 +18,49 @@ import { AuthService } from './auth.service';
 
 // ── Tipos ──────────────────────────────────────────────────────────────────────
 export interface Trophy {
-  trophyId:    string;
-  name:        string;
+  trophyId: string;
+  name: string;
   description: string;
-  icon:        string;
-  category:    string;
-  earnedAt?:   string;
+  icon: string;
+  category: string;
+  earnedAt?: string;
 }
 
 export interface Collectible {
   collectibleId: string;
-  name:          string;
-  description:   string;
-  icon:          string;
-  rarity:        'comun' | 'raro' | 'epico' | 'legendario';
-  earnedAt?:     string;
+  name: string;
+  description: string;
+  icon: string;
+  rarity: 'comun' | 'raro' | 'epico' | 'legendario';
+  earnedAt?: string;
 }
 
 // ── Catálogo de trofeos ─────────────────────────────────────────────────────────
 const TROPHY_CATALOG: Record<string, Omit<Trophy, 'earnedAt'>> = {
-  primera_unidad:  { trophyId:'primera_unidad',  name:'Primera Unidad',      icon:'🏅', category:'progreso',   description:'Completaste tu primera unidad en Comprensión Lectora 7.' },
-  mitad_camino:    { trophyId:'mitad_camino',     name:'A Mitad del Camino',  icon:'🌟', category:'progreso',   description:'Completaste 4 unidades.' },
-  maestro_cl7:     { trophyId:'maestro_cl7',      name:'Maestro Comprensión Lectora 7', icon:'🏆', category:'maestria',   description:'¡Completaste las 8 unidades del curso!' },
-  puntaje_perfecto:{ trophyId:'puntaje_perfecto', name:'Puntuación Perfecta', icon:'💯', category:'evaluacion', description:'Obtuviste 100% en una evaluación.' },
-  aprobado_90:     { trophyId:'aprobado_90',      name:'Sobresaliente',       icon:'⭐', category:'evaluacion', description:'Obtuviste 90% o más en una evaluación.' },
-  persistente:     { trophyId:'persistente',      name:'Persistente',         icon:'💪', category:'actitud',    description:'Repetiste una evaluación para mejorar tu puntaje.' },
+  primera_unidad: { trophyId: 'primera_unidad', name: 'Primera Unidad', icon: '🏅', category: 'progreso', description: 'Completaste tu primera unidad en Comprensión Lectora 5.' },
+  mitad_camino: { trophyId: 'mitad_camino', name: 'A Mitad del Camino', icon: '🌟', category: 'progreso', description: 'Completaste 4 unidades.' },
+  maestro_cl7: { trophyId: 'maestro_cl7', name: 'Maestro Comprensión Lectora 5', icon: '🏆', category: 'maestria', description: '¡Completaste las 8 unidades del curso!' },
+  puntaje_perfecto: { trophyId: 'puntaje_perfecto', name: 'Puntuación Perfecta', icon: '💯', category: 'evaluacion', description: 'Obtuviste 100% en una evaluación.' },
+  aprobado_90: { trophyId: 'aprobado_90', name: 'Sobresaliente', icon: '⭐', category: 'evaluacion', description: 'Obtuviste 90% o más en una evaluación.' },
+  persistente: { trophyId: 'persistente', name: 'Persistente', icon: '💪', category: 'actitud', description: 'Repetiste una evaluación para mejorar tu puntaje.' },
 };
 
 // ── Catálogo de coleccionables ──────────────────────────────────────────────────
 const COLLECTIBLE_CATALOG: Record<number, Omit<Collectible, 'earnedAt'>> = {
-  1:  { collectibleId:'u1_ia',          name:'Mente IA',              icon:'🧠', rarity:'comun',      description:'Completaste la unidad de herramientas de IA.' },
-  2:  { collectibleId:'u2_prompt',      name:'Prompt Maestro',        icon:'✍️', rarity:'comun',      description:'Completaste la unidad de diseño de prompts.' },
-  3:  { collectibleId:'u3_live',        name:'Ficha Interactiva',     icon:'🧩', rarity:'comun',      description:'Completaste la unidad de Liveworksheets.' },
-  4:  { collectibleId:'u4_chocoano',    name:'Voz del Pacífico',      icon:'📘', rarity:'raro',       description:'Completaste la unidad de Canto Chocoano.' },
-  5:  { collectibleId:'u5_pixton',      name:'Historieta Viva',       icon:'💬', rarity:'raro',       description:'Completaste la unidad de Pixton.' },
-  6:  { collectibleId:'u6_guernica',    name:'Línea del Tiempo',      icon:'🕰️', rarity:'epico',      description:'Completaste la unidad de La Guernica.' },
-  7:  { collectibleId:'u7_scratch',     name:'Quiz Digital',          icon:'🎮', rarity:'epico',      description:'Completaste la unidad de Scratch.' },
-  8:  { collectibleId:'u8_story',       name:'Narrador CL7',          icon:'🎬', rarity:'legendario', description:'Completaste la unidad de Storytelling.' },
+  1: { collectibleId: 'u1_ia', name: 'Mente IA', icon: '🧠', rarity: 'comun', description: 'Completaste la unidad de herramientas de IA.' },
+  2: { collectibleId: 'u2_prompt', name: 'Prompt Maestro', icon: '✍️', rarity: 'comun', description: 'Completaste la unidad de diseño de prompts.' },
+  3: { collectibleId: 'u3_live', name: 'Ficha Interactiva', icon: '🧩', rarity: 'comun', description: 'Completaste la unidad de Liveworksheets.' },
+  4: { collectibleId: 'u4_chocoano', name: 'Voz del Pacífico', icon: '📘', rarity: 'raro', description: 'Completaste la unidad de Canto Chocoano.' },
+  5: { collectibleId: 'u5_pixton', name: 'Historieta Viva', icon: '💬', rarity: 'raro', description: 'Completaste la unidad de Pixton.' },
+  6: { collectibleId: 'u6_guernica', name: 'Línea del Tiempo', icon: '🕰️', rarity: 'epico', description: 'Completaste la unidad de La Guernica.' },
+  7: { collectibleId: 'u7_scratch', name: 'Quiz Digital', icon: '🎮', rarity: 'epico', description: 'Completaste la unidad de Scratch.' },
+  8: { collectibleId: 'u8_story', name: 'Narrador CL7', icon: '🎬', rarity: 'legendario', description: 'Completaste la unidad de Storytelling.' },
 };
 
 // ── Trofeo especial: coleccionista (todas las cartas) ──────────────────────────
 const TROPHY_COLECCIONISTA: Omit<Trophy, 'earnedAt'> = {
-  trophyId:'coleccionista', name:'Coleccionista Completo', icon:'🎁',
-  category:'coleccion', description:'Desbloqueaste todos los coleccionables.'
+  trophyId: 'coleccionista', name: 'Coleccionista Completo', icon: '🎁',
+  category: 'coleccion', description: 'Desbloqueaste todos los coleccionables.'
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -68,21 +68,21 @@ const TROPHY_COLECCIONISTA: Omit<Trophy, 'earnedAt'> = {
 export class GamificationService {
 
   // Streams reactivos — los componentes se suscriben a estos
-  private _trophies$     = new BehaviorSubject<Trophy[]>([]);
+  private _trophies$ = new BehaviorSubject<Trophy[]>([]);
   private _collectibles$ = new BehaviorSubject<Collectible[]>([]);
   // Set de IDs ya otorgados (para no duplicar en la sesión)
-  private _earnedTrophyIds     = new Set<string>();
+  private _earnedTrophyIds = new Set<string>();
   private _earnedCollectibleIds = new Set<string>();
 
-  trophies$     = this._trophies$.asObservable();
+  trophies$ = this._trophies$.asObservable();
   collectibles$ = this._collectibles$.asObservable();
 
   private get api() { return environment.apiUrl; }
 
   constructor(
-    private http:        HttpClient,
+    private http: HttpClient,
     private authService: AuthService,
-  ) {}
+  ) { }
 
   /** Carga inicial desde el backend al iniciar sesión */
   loadAll(userId: string): void {
@@ -91,12 +91,12 @@ export class GamificationService {
       .pipe(catchError(() => of([])))
       .subscribe(data => {
         const mapped = data.map(t => ({
-          trophyId:    t.trophyId,
-          name:        t.name,
+          trophyId: t.trophyId,
+          name: t.name,
           description: t.description,
-          icon:        t.icon,
-          category:    t.category,
-          earnedAt:    t.earnedAt,
+          icon: t.icon,
+          category: t.category,
+          earnedAt: t.earnedAt,
         } as Trophy));
         mapped.forEach(t => this._earnedTrophyIds.add(t.trophyId));
         this._trophies$.next(mapped);
@@ -108,11 +108,11 @@ export class GamificationService {
       .subscribe(data => {
         const mapped = data.map(c => ({
           collectibleId: c.collectibleId,
-          name:          c.name,
-          description:   c.description,
-          icon:          c.icon,
-          rarity:        c.rarity,
-          earnedAt:      c.earnedAt,
+          name: c.name,
+          description: c.description,
+          icon: c.icon,
+          rarity: c.rarity,
+          earnedAt: c.earnedAt,
         } as Collectible));
         mapped.forEach(c => this._earnedCollectibleIds.add(c.collectibleId));
         this._collectibles$.next(mapped);
@@ -136,8 +136,8 @@ export class GamificationService {
     if (colDef) this._grantCollectible(user, colDef);
 
     // ── 2. Trofeos según rendimiento en la evaluación ─────────────
-    if (percentage === 100)  this._grantTrophy(user, TROPHY_CATALOG['puntaje_perfecto']);
-    if (percentage >= 90)    this._grantTrophy(user, TROPHY_CATALOG['aprobado_90']);
+    if (percentage === 100) this._grantTrophy(user, TROPHY_CATALOG['puntaje_perfecto']);
+    if (percentage >= 90) this._grantTrophy(user, TROPHY_CATALOG['aprobado_90']);
 
     // ── 3. Trofeos por progreso ───────────────────────────────────
     if (totalCompleted >= 1) this._grantTrophy(user, TROPHY_CATALOG['primera_unidad']);
@@ -174,13 +174,13 @@ export class GamificationService {
 
     // Persistir en backend (upsert — no afecta datos existentes)
     this.http.post(`${this.api}/trophies`, {
-      userId:      user.userId,
-      username:    user.displayName || user.username,
-      trophyId:    def.trophyId,
-      name:        def.name,
+      userId: user.userId,
+      username: user.displayName || user.username,
+      trophyId: def.trophyId,
+      name: def.name,
       description: def.description,
-      icon:        def.icon,
-      category:    def.category,
+      icon: def.icon,
+      category: def.category,
     }).pipe(catchError(() => of(null))).subscribe();
   }
 
@@ -195,20 +195,20 @@ export class GamificationService {
 
     // Persistir en backend
     this.http.post(`${this.api}/collectibles`, {
-      userId:        user.userId,
-      username:      user.displayName || user.username,
+      userId: user.userId,
+      username: user.displayName || user.username,
       collectibleId: def.collectibleId,
-      name:          def.name,
-      description:   def.description,
-      icon:          def.icon,
-      rarity:        def.rarity,
+      name: def.name,
+      description: def.description,
+      icon: def.icon,
+      rarity: def.rarity,
     }).pipe(catchError(() => of(null))).subscribe();
   }
 
   // ── Getters de snapshot para componentes ────────────────────────────────────
-  get earnedTrophies():     Trophy[]     { return this._trophies$.getValue(); }
+  get earnedTrophies(): Trophy[] { return this._trophies$.getValue(); }
   get earnedCollectibles(): Collectible[] { return this._collectibles$.getValue(); }
 
-  hasTrophy(id: string): boolean     { return this._earnedTrophyIds.has(id); }
+  hasTrophy(id: string): boolean { return this._earnedTrophyIds.has(id); }
   hasCollectible(id: string): boolean { return this._earnedCollectibleIds.has(id); }
 }

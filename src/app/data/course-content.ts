@@ -49,7 +49,7 @@ const SITE = 'https://sites.google.com/view/estrategiapedagogicavictor?usp=shari
 /** Contenido oficial — PDF «Contenido del Curso en Linea» */
 export const CL7_COURSE: Course = {
   courseId: 'cl7-2026',
-  title: 'Comprensión Lectora Grado Séptimo',
+  title: 'Comprensión Lectora Grado Quinto',
   description:
     'El curso virtual «Comprensión lectora Grado Séptimo» ha sido diseñado para superar las dificultades del proceso lector de estudiantes de grado séptimo, con el uso de diferentes herramientas digitales. Aprenderán a entender mejor los textos que leen, descubrir su significado más profundo y analizar cómo están escritos y para qué fueron creados, con actividades guiadas y recursos interactivos. El curso está dividido en cuatro unidades (indicadores semántico, sintáctico y pragmático); cada actividad tiene fase inicial, intermedia y final (120 minutos cada una).',
   grade: '7',
